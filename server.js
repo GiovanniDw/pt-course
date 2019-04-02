@@ -10,7 +10,7 @@ const LocalStrategy = require('passport-local').Strategy
 // const passportLocalMongoose = require('passport-local-mongoose')
 // const slug = require('slug')
 
-
+game = [];
 
 require('dotenv').config()
 
@@ -25,6 +25,8 @@ mongoose.Promise = global.Promise;
 mongoose.connect(url, function (err, client) {
                 if (err) throw err
                 db = client.db(process.env.DB_NAME)
+            }, {
+                useNewUrlParser: true
             })
     .then(() => console.log('connection succesful'))
     .catch((err) => console.error(err))
@@ -115,6 +117,7 @@ function profile(req, res, next) {
         }
     }
 }
+
 function addGame(req, res, next) {
 
 db.collection('game').find().toArray(done)
