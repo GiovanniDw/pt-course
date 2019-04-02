@@ -1,0 +1,19 @@
+<% include ../partials/head.ejs %>
+
+<h1>Profile</h1>
+<% if (typeof user == 'object' && user) { %>
+<h2>Hi,  <%= user.username %> !</h2>
+
+<% include ../partials/my-list.ejs %>
+<% include ../partials/add.ejs %>
+
+
+  
+  
+<% } else { %>
+<h2>Hi Nobody!</h2>
+<% include ../partials/user-log-reg.ejs %>
+  <% } %>
+  
+<% include ../partials/tail.ejs %>
+

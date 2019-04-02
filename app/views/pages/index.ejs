@@ -1,0 +1,17 @@
+
+
+<% include ../partials/head.ejs %>
+<h1>DateR</h1>
+
+<% if (typeof user == 'object' && user) { %>
+<h2>Hi,  <%= user.username %> !</h2>
+
+
+
+  
+  
+<% } else { %>
+<% include ../partials/user-log-reg.ejs %>
+<% } %>
+
+  <% include ../partials/tail.ejs %>
