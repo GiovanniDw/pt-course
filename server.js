@@ -134,8 +134,9 @@ function addGame(req, res, next){
         {$push:
             {
                     games : {
-                        title: req.body.title
-                        
+                        title: req.body.title,
+                        cover: req.file ? req.file.filename : null,
+                        xp: req.body.xp
                     }
 
             }
