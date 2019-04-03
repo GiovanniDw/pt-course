@@ -115,7 +115,7 @@ function chat(req, res) {
 //     res.render('pages/sign-up')
 // }
 function profile(req, res, next) {
-   db.collection('game').find().toArray(done)
+   User.games.find().toArray(done)
     function done(err, game) {
         if (err) {
             next(err)
@@ -145,9 +145,7 @@ function addGame(req, res, next){
             if (err) {
                 next(err)
             } else {
-                res.json({
-                    status: 'ok'
-                })
+                
                 res.redirect('/profile')
             }
         }
