@@ -258,7 +258,7 @@ ul.games li.item button.add:hover {
     
 }
 
-.btn-signup, .btn-login {
+.btn-signup, .btn-login, .btn-logout {
     background: var(--main-color);
     border-radius: 5px;
     color: white;

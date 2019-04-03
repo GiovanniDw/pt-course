@@ -28,6 +28,7 @@ userController.doRegister = function (req, res) {
     User.register(new User({
         username: req.body.username,
         name: req.body.name,
+        console: req.body.console
         
     }), req.body.password, function (err, user) {
         if (err) {
@@ -41,6 +42,7 @@ userController.doRegister = function (req, res) {
         });
     });
 };
+
 
 // Go to login page
 userController.login = function (req, res) {

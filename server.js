@@ -10,29 +10,38 @@ const LocalStrategy = require('passport-local').Strategy
 // const passportLocalMongoose = require('passport-local-mongoose')
 // const slug = require('slug')
 
-game = [];
+
 
 require('dotenv').config()
 
-var db = null
-var url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
+// var db = null
+const url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
 
 // mongo.MongoClient.connect(url, function (err, client) {
 //     if (err) throw err
 //     db = client.db(process.env.DB_NAME)
 // })
-mongoose.Promise = global.Promise;
-mongoose.connect(url, function (err, client) {
-                if (err) throw err
-                db = client.db(process.env.DB_NAME)
-            }, {
-                useNewUrlParser: true
-            })
-    .then(() => console.log('connection succesful'))
-    .catch((err) => console.error(err))
+// mongoose.Promise = global.Promise;
+mongoose.connect(url , {useNewUrlParser: false,});
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(){
+console.log('were connected')
+});
+
+
+// mongoose.connect(url, function (err, client) {
+//                 if (err) throw err
+//                 db = client.db(process.env.DB_NAME)
+//             }, {
+//                 useNewUrlParser: true
+//             })
+//     .then(() => console.log('connection succesful'))
+//     .catch((err) => console.error(err))
     
 var index = require('./app/routes/index')
 var users = require('./app/routes/users')
+
 
 
 
@@ -62,6 +71,7 @@ app.use('/users', users);
 
 
 const User = require('./app/models/User');
+
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -111,36 +121,38 @@ function profile(req, res, next) {
             next(err)
         } else {
             res.render('pages/profile', {
-                
                 game: game
             })
         }
     }
 }
 
-function addGame(req, res, next) {
+function addGame(req, res, next){
 
-db.collection('game').find().toArray(done)
+    User.findOneAndUpdate(
+        {_id:req.user._id},
+        {$push:
+            {
+                    games : {
+                        title: req.body.title
+                        
+                    }
 
-    if (!req.session.user) {
-        res.status(401).send('Credentials required')
-        return
-    } else {
-        res.redirect('/sign-up')
-    }
-    db.collection('game').insertOne({
-        title: req.body.title,
-        cover: req.file ? req.file.filename : null,
-        description: req.body.description
-    }, done)
-    function done(err) {
-        if (err) {
-           next(err)
-        } else {
- res.redirect('/profile')
+            }
+        }, done)
+        function done(err) {
+            if (err) {
+                next(err)
+            } else {
+                res.json({
+                    status: 'ok'
+                })
+                res.redirect('/profile')
+            }
         }
     }
-}
+
+
 function removeGame(req, res, next) {
     var id = req.params.id
 
