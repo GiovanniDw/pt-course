@@ -23,7 +23,7 @@ const url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
 // })
 // mongoose.Promise = global.Promise;
 mongoose.connect(url , {useNewUrlParser: false,});
-let db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
 console.log('were connected')
@@ -39,13 +39,13 @@ console.log('were connected')
 //     .then(() => console.log('connection succesful'))
 //     .catch((err) => console.error(err))
     
-var index = require('./app/routes/index')
-var users = require('./app/routes/users')
+const index = require('./app/routes/index')
+const users = require('./app/routes/users')
 
 
 
 
-var upload = multer({
+const upload = multer({
     dest: './app/static/uploads/'
 })
 
@@ -247,4 +247,5 @@ function error(req, res) {
     })
 
 }
+
 

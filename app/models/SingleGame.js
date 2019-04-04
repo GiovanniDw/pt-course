@@ -7,7 +7,4 @@ const SingleGameSchema = new mongoose.Schema({
     xp: String
 
 });
-
-
-
 module.exports = mongoose.model('SingleGame', SingleGameSchema);
