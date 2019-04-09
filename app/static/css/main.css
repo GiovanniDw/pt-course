@@ -87,14 +87,20 @@ h2 {
     font-weight: 800;
     color: var(--main-color);
 }
-form{
+.no-js form {
+    position: relative;
+    margin: 0 auto;
+    
+}
+
+.js-enabled form{
     position: fixed;
     margin: 0 auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.hidden{
+.js-enabled .hidden{
     display: none;
 }
 .btn-main{
@@ -117,12 +123,12 @@ flex-direction: column;
 background: white;
 justify-content: space-between;
 }
-.add-movie {
+.no-js .add-movie {
     border: 1px solid #ededed;
     border-radius: 5px;
  /* margin: 2em auto; */
-    
-
+    margin: 0 auto;
+width: 100px;
  
     display: flex;
     flex-direction: column;
@@ -132,6 +138,21 @@ justify-content: space-between;
    -moz-box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.56);
    box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.56);
     
+}
+.js-enabled .add-movie{
+     border: 1px solid #ededed;
+     border-radius: 5px;
+     /* margin: 2em auto; */
+     /* margin: 0 auto; */
+     width: 400px;
+
+     display: flex;
+     flex-direction: column;
+     background: white;
+     justify-content: space-between;
+     -webkit-box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.56);
+     -moz-box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.56);
+     box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.56);
 }
 fieldset{
     -webkit-appearance: none;
@@ -144,7 +165,8 @@ button{
 input, textarea{
     border-top: 0px;
     border-right: 0px;
-    border-bottom: 1px solid lightgray;
+    border-left: 0 ;
+    border-bottom: 1.5px solid lightgray;
     
     /* border-radius: 5px; */
     padding: .5em;

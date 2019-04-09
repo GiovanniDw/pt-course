@@ -1,3 +1,12 @@
+(function () {
+    enableJS();
+
+    function enableJS() {
+        document.body.classList.replace('no-js', 'js-enabled');
+    }
+})();
+
+
 for (var i = 0; i < document.links.length; i++) {
     if (document.links[i].href == document.URL) {
         document.links[i].className = 'active';
@@ -7,7 +16,7 @@ for (var i = 0; i < document.links.length; i++) {
 var form = document.querySelector('form');
 var showFormButton = document.querySelector('#show-add');
 
-showFormButton.addEventListener('click', function(){
+showFormButton.addEventListener('click', function () {
     form.classList.toggle('hidden')
 })
 
@@ -37,27 +46,28 @@ function onremove(ev) {
             throw new Error('Could not delete!')
         }
 
-        
-        
+
+
 
 
         window.location = '/profile'
     }
-  fetch('/' + id, {
-          method: 'delete'
-      })
-      .then(onresponse)
-      .then(onload, onfail)
+    fetch('/' + id, {
+            method: 'delete'
+        })
+        .then(onresponse)
+        .then(onload, onfail)
 
-  function onresponse(res) {
-      return res.json()
-  }
-
-
- 
-
-  function onfail() {
-      throw new Error('Could not delete!')
-  }
-
+    function onresponse(res) {
+        return res.json()
     }
+
+
+
+
+    function onfail() {
+        throw new Error('Could not delete!')
+    }
+
+}
+

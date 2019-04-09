@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const path = require('path');
 const bodyParser = require('body-parser')
@@ -7,38 +8,20 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-// const passportLocalMongoose = require('passport-local-mongoose')
-// const slug = require('slug')
 
 
 
-require('dotenv').config()
 
-// var db = null
+
+
 const url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
 
-// mongo.MongoClient.connect(url, function (err, client) {
-//     if (err) throw err
-//     db = client.db(process.env.DB_NAME)
-// })
-// mongoose.Promise = global.Promise;
 mongoose.connect(url , {useNewUrlParser: false,});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
 console.log('were connected')
 });
-
-
-// mongoose.connect(url, function (err, client) {
-//                 if (err) throw err
-//                 db = client.db(process.env.DB_NAME)
-//             }, {
-//                 useNewUrlParser: true
-//             })
-//     .then(() => console.log('connection succesful'))
-//     .catch((err) => console.error(err))
-    
 const index = require('./app/routes/index')
 const users = require('./app/routes/users')
 
@@ -78,16 +61,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
     app.get('/chat', chat)
-    // app.get('/', renderHome)
-    // app.get('/register', renderRegister)
-    // app.get('/login', renderLogin)
     app.get('/profile', profile)
-    // app.post('/sign-up', register)
-    // // app.post('/login', login)
-    // app.post('/login', passport.authenticate('local', {
-    //     successRedirect: '/profile',
-    //     failureRedirect: '/login'
-    // }))
     app.post('/profile', upload.single('cover'), addGame)
     app.delete('/profile:id', removeGame)
     app.use(function (req, res, next) {
@@ -98,22 +72,10 @@ passport.deserializeUser(User.deserializeUser());
     app.get('*', error)
     app.listen(port)
 
-
-
-
-
-// function renderHome(req, res) {
-//     res.render('pages/index')
-// }
 function chat(req, res) {
     res.render('pages/chat')
 }
-// function renderLogin(req, res) {
-//     res.render('pages/login')
-// }
-// function renderRegister(req, res) {
-//     res.render('pages/sign-up')
-// }
+
 function profile(req, res, next) {
    User.games.find().toArray(done)
     function done(err, game) {
@@ -137,7 +99,8 @@ function addGame(req, res, next){
                         title: req.body.title,
                         cover: req.file ? req.file.filename : null,
                         xp: req.body.xp
-                    }
+                    },
+                    game : req.body.game
 
             }
         }, done)
@@ -155,10 +118,10 @@ function addGame(req, res, next){
 function removeGame(req, res, next) {
     var id = req.params.id
 
-    // if (!req.session.user) {
-    //     res.status(401).send('Credentials required')
-    //     return
-    // }
+    if (!req.session.user) {
+        res.status(401).send('Credentials required')
+        return
+    }
 
     db.collection('game').deleteOne({
         _id: mongo.ObjectID(id)

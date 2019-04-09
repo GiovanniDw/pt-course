@@ -7,7 +7,8 @@ const UserSchema = new mongoose.Schema({
     username: String,
     console: String,
     password: String,
-        games : [SingleGame.schema]
+    games : [SingleGame.schema],
+    game: Array
 });
 
 UserSchema.plugin(passportLocalMongoose);
