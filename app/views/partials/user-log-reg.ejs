@@ -1,15 +1,10 @@
-
-
 <div class=log-sign>
 <% if (typeof user == 'object' && user) { %>
-
 <a class=btn-logout href="/logout">Logout</a>
-
 <% } else { %>
 Let me know who you are!
 <a class=btn-login href="/login">Log in</a>
 Or
 <a class=btn-signup href="/register">Register</a>
 <% } %>
-
 </div>

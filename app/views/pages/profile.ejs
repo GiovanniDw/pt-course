@@ -1,23 +1,23 @@
 <% include ../partials/head.ejs %>
-
+<section>
 <h1>Profile</h1>
 <% if (typeof user == 'object' && user) { %>
-<div class=profile-info>
-  
 
-<h2>Hi,  <%= user.username %> !</h2>
-<p> You are a <b><%= user.console %></b> Gamer</p>
+<div class=profile-picture>
+<img src="/uploads/<%= user.picture %> ">
 </div>
+    <h2> <%= user.username %></h2>
+    <p class='icon console'> <%= user.console %></p>
+<h3>About</h3>
+<p> <%= user.about %> </p>
 <% include ../partials/my-list.ejs %>
-<% include ../partials/add.ejs %>
 
-
-  
-  
 <% } else { %>
-<h2>Hi Nobody!</h2>
+      <h2>Hi Nobody!</h2>
 
-  <% } %>
-  <% include ../partials/user-log-reg.ejs %>
+<% } %>
+</section>
+
+<% include ../partials/user-log-reg.ejs %>
 <% include ../partials/tail.ejs %>
 

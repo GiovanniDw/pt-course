@@ -1,17 +1,27 @@
 <% include ../partials/head.ejs %>
+<section class=header>
+  <a href="/"><img class=logo src="/images/logo.svg"/></a>
+  <h1>Gamer</h1>
+</section>
+
+
+<section>
 <form action=/register method=post>
-<fieldset class=add-movie>
-  
-<h2>Sign up</h2>
+<fieldset class=register>
+<div class=login-register>
+      <a href="login">Login</a>
+      <a class=active href="register">Register</a>
+    </div>
 <label>Name</label>
   <input type=text name=name>
   <label>Username</label>
   <input type=text name=username>
-    <label>Password</label>
+  <label>Password</label>
   <input type=password name=password>
-  <label>What console do you play?</label>
-  <input type=text name=console>
-  <button type=submit class=btn-main>Sign Up</button>
+  
+  <button type=submit class="btn-main btn-bottom">Sign Up</button>
   </fieldset>
 </form>
 
+</section>
+<% include ../partials/tail.ejs %>

@@ -1,21 +1,23 @@
 <% include ../partials/head.ejs %>
+<section class=header>
+  <a href="/"><img class=logo src="/images/logo.svg"/></a>
+  <h1>Gamer</h1>
+</section>
+<section>
 <form action=/login method=POST>
-<fieldset>
-  
-<h2>Login</h2>
-  <label>Username</label>
-  <input type=text name=username>
+  <fieldset class=login>
+    <div class=login-register>
+      <a class=active href="login">Login</a>
+      <a href="register">Register</a>
+    </div>
+    <label>Username</label>
+    <input type=text name=username>
     <label>Password</label>
-  <input type=password name=password>
-  
-  <button type=submit class=btn-main>Login</button>
+    <input type=password name=password>
+    <button type=submit class="btn-main btn-bottom">Login</button>
   </fieldset>
 </form>
- <% if (typeof username == 'object' && username) { %>
+ </section>
+ <% include ../partials/tail.ejs %>
 
-
-
-
-  <h2>Hi,  <%= username %> !</h2>
-  <p>  </p>
-<% } %>
+ 

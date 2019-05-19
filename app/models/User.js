@@ -6,11 +6,10 @@ const UserSchema = new mongoose.Schema({
     name: String,
     username: String,
     console: String,
+    picture: String,
+    about: String,
     password: String,
-    games : [SingleGame.schema],
-    game: Array
+    games : [SingleGame.schema]
 });
-
 UserSchema.plugin(passportLocalMongoose);
-
 module.exports = mongoose.model('User', UserSchema);

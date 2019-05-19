@@ -9,11 +9,6 @@ const session = require('express-session')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
-
-
-
-
-
 const url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
 
 mongoose.connect(url , {useNewUrlParser: false,});
@@ -24,10 +19,6 @@ console.log('were connected')
 });
 const index = require('./app/routes/index')
 const users = require('./app/routes/users')
-
-
-
-
 const upload = multer({
     dest: './app/static/uploads/'
 })
@@ -38,7 +29,7 @@ const app = express()
     app.set('views', path.join(__dirname, 'app/views'))
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({extended: true}))
-    app.use(express.static(path.join(__dirname, 'app/static')))
+    app.use('/', express.static('app/static/'))
     app.use(session({
         resave: false,
         saveUninitialized: false,
@@ -47,11 +38,8 @@ const app = express()
     app.use(passport.initialize())
     app.use(passport.session())
 
-    
-
 app.use('/', index);
 app.use('/users', users);
-
 
 const User = require('./app/models/User');
 
@@ -59,23 +47,28 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
     app.get('/chat', chat)
+    app.get('/games', games)
     app.get('/profile', profile)
+    app.get('/profile/edit', editProfile)
+    app.post('/profile/edit', upload.single('picture'), doEditProfile)
     app.post('/profile', upload.single('cover'), addGame)
     app.delete('/profile:id', removeGame)
     app.use(function (req, res, next) {
         res.locals.user = null
         next()
     })
-    
     app.get('*', error)
     app.listen(port)
 
 function chat(req, res) {
     res.render('pages/chat')
 }
-
+function games(req, res) {
+    res.render('pages/games', {
+        games: games
+    })
+}
 function profile(req, res, next) {
    User.games.find().toArray(done)
     function done(err, game) {
@@ -89,19 +82,17 @@ function profile(req, res, next) {
     }
 }
 
-function addGame(req, res, next){
 
+
+function addGame(req, res, next){
     User.findOneAndUpdate(
         {_id:req.user._id},
         {$push:
             {
                     games : {
                         title: req.body.title,
-                        cover: req.file ? req.file.filename : null,
-                        xp: req.body.xp
-                    },
-                    game : req.body.game
-
+                        cover: req.file ? req.file.filename : null
+                    }
             }
         }, done)
         function done(err) {
@@ -113,8 +104,6 @@ function addGame(req, res, next){
             }
         }
     }
-
-
 function removeGame(req, res, next) {
     var id = req.params.id
 
@@ -136,67 +125,6 @@ function removeGame(req, res, next) {
         }
     }   
 }
-
-// function register(req, res) {
-// User.register(new User({
-//     username: req.body.username
-// }), req.body.password, function (err, user) {
-//     if (err) {
-//         console.log(err);
-//         return res.redirect('sign-up');
-//     } else {
-//         passport.authenticate('local')(req, res, function () {
-//             res.redirect('/profile');
-//         });
-//     }
-// });
-// }
-
-
-
-// function signup(req, res, next) {
-
-//     db.collection('user').insertOne({
-//         username: req.body.username,
-//         password: req.body.password,
-//         console: req.body.description
-//     }, done)
-
-//     function done(err) {
-//         if (err) {
-//             next(err)
-//         } else {
-//             res.redirect('/profile')
-//         }
-//     }
-// }
-// function login(req, res) {
-//     var username = req.body.username
-//     var password = req.body.password
-
-//     db.collection('user').findOne({
-//         username: username,
-//         password: password
-
-//     }, done)
-
-//     function done(err, user) {
-//         if (user) {
-//                 req.session.user = user
-//                 res.render('pages/login', {
-//                     id: user._id,
-//                     username: user.username
-//                 })
-        
-//         } else {
-//             res.json({
-//                 status: 'ok'
-//             })
-//             res.status(401).send('Password incorrect')
-//         }
-//     } 
-// }
-
 function error(req, res) {
     res.render('static' + req.url, function (err, html) {
         if (!err) {
@@ -208,7 +136,34 @@ function error(req, res) {
         }
         throw err
     })
-
 }
 
 
+function editProfile(req, res) {
+    res.render('pages/edit', {
+        user: req.user
+    });
+}
+
+function doEditProfile(req, res, next) {
+    User.findOneAndUpdate({
+        _id: req.user._id
+    }, {
+        $set: {
+           // name: req.body.name,
+            username: req.body.username,
+            console: req.body.console,
+            picture: req.file ? req.file.filename : null,
+            about: req.body.about
+            }
+    }, done);
+
+    function done(err) {
+        if (err) {
+            next(err)
+        } else {
+
+            res.redirect('/profile')
+        }
+    }
+}

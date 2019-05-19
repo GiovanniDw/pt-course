@@ -1,9 +1,16 @@
-@import url("https://necolas.github.io/normalize.css/latest/normalize.css");
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300i,400,800i');
-
+@import url('https://necolas.github.io/normalize.css/latest/normalize.css');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300i,400,800,800i');
+@import url('https://use.fontawesome.com/releases/v5.8.2/css/all.css');
 :root {
     --main-color:#1E88E5;
+
+    --black-color:#212121;
+    --white-color:#FAFAFA;
+
+    --light-gray:#E0E0E0;
+    --gray:#9E9E9E;
+    --dark-gray:#616161;
 }
 
 
@@ -14,19 +21,39 @@
 }
 body{
     font-family: 'Open Sans', sans-serif;
-    width: 100vw;
-    height: 100vh;
+    padding-bottom: 83px;
+    background: var(--white-color);
+    
 }
 
 header{
     height: 3em;
 }
-section.empty-state{
-  margin-top: 10em;
+footer{
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    height: 83px;
+    border-top: 1px solid lightgray;
+    background: var(--white-color);
     
 }
-section.empty-state p{
-text-align: center;
+
+section{
+    padding: 1em;
+    color: var(--dark-gray);
+}
+section.header {
+    
+    text-align: center;
+    margin: 0 auto;
+    
+}
+section.header .logo {
+   
+    width: 4em;
+    
+    
 
 }
 ul.main-nav{
@@ -34,7 +61,6 @@ ul.main-nav{
     display: flex;
     justify-content: space-between;
     padding: 0 1em 0 1em;
-
 }
 ul.main-nav li{
     list-style: none;
@@ -59,8 +85,7 @@ ul.main-nav li a img{
     
 }
 ul.main-nav li a {
-    
-   opacity: 0.2;
+opacity: 0.2;
 transition-delay: 1s;
 transition-duration: 1s;
 
@@ -71,38 +96,29 @@ ul.main-nav li a.active  {
     opacity: 1;
 transition-delay: 1s;
 transition-duration: 1s;
+ transform: scale(1);
 
 
 }
 h1{
     font-size: 2em;
-    text-align: center;
+    
     font-style: italic;
     font-weight: 800;
     color: var(--main-color);
 }
 h2 {
-    text-align: center;
+    
     font-style: italic;
     font-weight: 800;
-    color: var(--main-color);
+    color: var(--black-color);
 }
-.no-js form {
-    position: relative;
-    margin: 0 auto;
-    
+h3{
+    color: var(--black-color);
+    font-weight: 800;
 }
 
-.js-enabled form{
-    position: fixed;
-    margin: 0 auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.js-enabled .hidden{
-    display: none;
-}
+
 .btn-main{
 background: var(--main-color);
 border-radius: 5px;
@@ -112,7 +128,14 @@ padding: .7em 0;
 margin: .5em 0 .5em 0;
 border: 0;
 }
-.login{
+
+.btn-bottom{
+    
+
+    bottom: 0;
+
+}
+/* .login{
 border: 1px solid #ededed;
 border-radius: 5px;
 margin: 2em auto;
@@ -122,38 +145,9 @@ display: flex;
 flex-direction: column;
 background: white;
 justify-content: space-between;
-}
-.no-js .add-movie {
-    border: 1px solid #ededed;
-    border-radius: 5px;
- /* margin: 2em auto; */
-    margin: 0 auto;
-width: 100px;
+} */
  
-    display: flex;
-    flex-direction: column;
-    background: white;
-    justify-content: space-between;
-   -webkit-box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.56);
-   -moz-box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.56);
-   box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.56);
-    
-}
-.js-enabled .add-movie{
-     border: 1px solid #ededed;
-     border-radius: 5px;
-     /* margin: 2em auto; */
-     /* margin: 0 auto; */
-     width: 400px;
-
-     display: flex;
-     flex-direction: column;
-     background: white;
-     justify-content: space-between;
-     -webkit-box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.56);
-     -moz-box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.56);
-     box-shadow: 0px 5px 13px 0px rgba(0, 0, 0, 0.56);
-}
+ 
 fieldset{
     -webkit-appearance: none;
 }
@@ -168,18 +162,54 @@ input, textarea{
     border-left: 0 ;
     border-bottom: 1.5px solid lightgray;
     
-    /* border-radius: 5px; */
+    border-radius: 0px;
     padding: .5em;
     margin: .5em 0 .5em 0;
 }
-.profile-info{
-    text-align: center;
+
+.profile-picture{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 100%;
+    
 }
+
+.login, .register, .edit{
+    display: flex;
+    flex-direction: column;
+    border: 0;
+    padding: 0;
+    
+}
+.login-register{
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
+    margin-bottom: 5em;
+    font-size: 1.5em;
+}
+.login-register a{
+align-self: center;
+color: var(--dark-gray);
+font-weight: bold;
+text-decoration: none;
+font-style: italic;
+font-weight: 800;
+height: 2em;
+width: 50%;
+text-align: center;
+}
+.login-register a.active {
+border-bottom:1px solid var(--main-color);
+color: var(--main-color);
+}
+
 ul.games{
     display: flex;
     flex-wrap: wrap;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 0em;
+    padding-right: 0em;
     align-items: stretch;
 }
 
@@ -203,7 +233,8 @@ ul.games li.item img{
 ul.games li.item{
     position: relative;
 }
-ul.games li.item button {
+ul.games li.item button,
+ul.games li.item a {
 position: absolute;
 bottom: 0;
 right: 0;
@@ -212,9 +243,9 @@ width: 25px;
 }
 img{
     width: 100%;
-    
 }
-ul.games li.item button.add {
+ul.games li.item a.add {
+    text-decoration: none;
 -webkit-appearance: none;
 border-radius: 100%;
 border: 0px solid #3e3e3e;
@@ -257,7 +288,7 @@ ul.games li.item button.remove:hover {
  
   
 }
-ul.games li.item button.add:hover {
+ul.games li.item a.add:hover {
     transform: (1.4);
     
     transform: rotate(180deg);
@@ -268,7 +299,6 @@ ul.games li.item button.add:hover {
     background:lightgray;
     border-radius: 100%;
     margin: 0 auto;
-
 } 
 
 .log-sign{
@@ -291,4 +321,29 @@ ul.games li.item button.add:hover {
     text-decoration: none;
     text-align: center;
     
+}
+
+
+
+
+.icon::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Step 2: Reference Individual Icons */
+.console::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f11b";
+}
+
+/* Note: Make sure to include the correct weight and unicode value for the icon */
+.tps::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  content: "\f1ea";
 }

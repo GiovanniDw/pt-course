@@ -1,17 +1,17 @@
-
-
 <% include ../partials/head.ejs %>
-<h1>DateR</h1>
 
+<section>
+  <h1>Gamer</h1>
+</section>
+
+<section>
+  
+
+  
 <% if (typeof user == 'object' && user) { %>
-<h2>Hi,  <%= user.username %> !</h2>
-
-
-
-  
-  
+  <h2>Hi,  <%= user.username %> !</h2>
 <% } else { %>
-<% include ../partials/user-log-reg.ejs %>
+  <% include ../partials/user-log-reg.ejs %>
 <% } %>
-
-  <% include ../partials/tail.ejs %>
+</section>
+<% include ../partials/tail.ejs %>

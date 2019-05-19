@@ -1,0 +1,21 @@
+<% include ../partials/head.ejs %>
+
+
+<section>    
+<form action=edit method=post enctype=multipart/form-data>
+<fieldset class=edit>
+<h2>Edit Profile info</h2>
+<label>Profile Picture</label>
+  <input name=picture type=file accept=image/*>
+  <label>username </label>
+  <input name=username value= <%= user.username %> >
+  <label>console </label>
+  <input name=console value= <%= user.console %>>
+  
+  <label>About <% user.username%> </label>
+  <textarea name=about rows=5 value= <%= user.about %> ></textarea>
+  <button type=submit class=btn-main>done</button>
+  </fieldset>
+</form>
+</section>
+<% include ../partials/tail.ejs %>
