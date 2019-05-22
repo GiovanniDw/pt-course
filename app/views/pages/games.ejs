@@ -8,28 +8,24 @@
 <section>
 <form>
   <div>
-    <input type="search" id="mySearch" name="q"
+    <input type="search" id="mySearch" name="query"
      placeholder="Search for Games">
-    <button class=material-icons>Search</button>
+    <button class=material-icons>search</button>
   </div>
 </form>
 </section>
 
 <div>
     <ul class="games">
-        <%# for (var index = 0; index < games.length; index++) { %>
+        <% for (var index = 0; index < games.length; index++) { %>
         <li class="item">
         
-            <img src="/uploads/<%#= games[index].cover %>" alt="<%#= games[index].title %>">
+            <img src="/uploads/<%= games[index].cover %>" alt="<%= games[index].title %>">
             <button id=js-remove
-                    data-id="<%#= games[index]._id %>"
+                    data-id="<%= games[index]._id %>"
                     class="icon add material-icons">add</button>
         </li>
-        <%# } %>
-        <li class="item">
-            <img src="https://via.placeholder.com/100x125" alt="">
-            <a href='/games' id="" class="icon add material-icons">add</a>
-        </li>
+        <% } %>
     </ul>    
 </div>
 

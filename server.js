@@ -1,24 +1,28 @@
 require('dotenv').config()
-const express = require('express')
+const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser')
-const multer = require('multer')
-const mongo = require('mongodb')
-const mongoose = require('mongoose')
-const session = require('express-session')
-const passport = require('passport')
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const mongo = require('mongodb');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy
 
 const url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
 
 mongoose.connect(url , {useNewUrlParser: false,});
 const db = mongoose.connection;
+// eslint-disable-next-line no-console
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
+// eslint-disable-next-line no-console
 console.log('were connected')
 });
 const index = require('./app/routes/index')
 const users = require('./app/routes/users')
+const games = require('./app/routes/games')
+
 const upload = multer({
     dest: './app/static/uploads/'
 })
@@ -40,6 +44,7 @@ const app = express()
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/games', games);
 
 const User = require('./app/models/User');
 
@@ -48,12 +53,13 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
     app.get('/chat', chat)
-    app.get('/games', games)
-    app.get('/profile', profile)
+    
+    
     app.get('/profile/edit', editProfile)
     app.post('/profile/edit', upload.single('picture'), doEditProfile)
-    app.post('/profile', upload.single('cover'), addGame)
-    app.delete('/profile:id', removeGame)
+    //app.post('/profile', upload.single('cover'), addGame)
+    //app.delete('/profile:id', removeGame)
+
     app.use(function (req, res, next) {
         res.locals.user = null
         next()
@@ -64,67 +70,10 @@ passport.deserializeUser(User.deserializeUser());
 function chat(req, res) {
     res.render('pages/chat')
 }
-function games(req, res) {
-    res.render('pages/games', {
-        games: games
-    })
-}
-function profile(req, res, next) {
-   User.games.find().toArray(done)
-    function done(err, game) {
-        if (err) {
-            next(err)
-        } else {
-            res.render('pages/profile', {
-                game: game
-            })
-        }
-    }
-}
 
 
 
-function addGame(req, res, next){
-    User.findOneAndUpdate(
-        {_id:req.user._id},
-        {$push:
-            {
-                    games : {
-                        title: req.body.title,
-                        cover: req.file ? req.file.filename : null
-                    }
-            }
-        }, done)
-        function done(err) {
-            if (err) {
-                next(err)
-            } else {
-                
-                res.redirect('/profile')
-            }
-        }
-    }
-function removeGame(req, res, next) {
-    var id = req.params.id
 
-    if (!req.session.user) {
-        res.status(401).send('Credentials required')
-        return
-    }
-
-    db.collection('game').deleteOne({
-        _id: mongo.ObjectID(id)
-    }, done)
-
-    function done(err) {
-        if (err) {
-            next(err)
-        } else {
-           res.json({status: 'ok'})
-           res.redirect('/profile')
-        }
-    }   
-}
 function error(req, res) {
     res.render('static' + req.url, function (err, html) {
         if (!err) {
