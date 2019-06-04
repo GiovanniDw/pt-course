@@ -23,8 +23,8 @@ body{
     font-family: 'Open Sans', sans-serif;
     padding-bottom: 83px;
     background: var(--white-color);
-    max-width: 400px;
-    margin: 0 auto;
+   
+   
     -webkit-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
     box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
@@ -33,16 +33,21 @@ body{
 }
 
 header{
-    height: 3em;
+
+ padding: 1em;
+ border-bottom: 1px solid var(--light-gray);
 }
 footer{
     bottom: 0;
     position: fixed;
     width: 100%;
-    height: 83px;
-    border-top: 1px solid lightgray;
+    
+    
     background: var(--white-color);
-    max-width: 400px;
+    
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
     
 }
 
@@ -50,17 +55,31 @@ section{
     padding: 1em;
     color: var(--dark-gray);
 }
-section.header {
+header.header {
     
     text-align: center;
     margin: 0 auto;
     
 }
-section.header .logo {
-   
+header.header .logo {
     width: 4em;
+}
+
+header nav.top-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+    width: 100%;
     
+    background: var(--white-color);
     
+}
+header nav.top-nav .left a,
+header nav.top-nav .right a {
+    text-decoration: none;
+    color: var(--main-color);
+
 
 }
 ul.main-nav{
@@ -73,15 +92,10 @@ ul.main-nav li{
     list-style: none;
    width: 3em;
 }
-ul.main-nav li:first-child {
-    transform: scale(0.6);
-}
-ul.main-nav li:last-child {
-    transform: scale(0.6);
-}
+
 
 ul.main-nav li a{
-   width: 3em;
+   width: 2em;
 
 }
 
@@ -162,6 +176,13 @@ fieldset{
 button{
     -webkit-appearance: none;
 }
+button.search{
+    border: 0;
+    background: none;
+    position: relative;
+    left: 10px;
+}
+
 
 input, textarea{
     border-top: 0px;
@@ -349,24 +370,37 @@ ul.games li.item a.add:hover {
 }
 
 /* Note: Make sure to include the correct weight and unicode value for the icon */
-.tps::before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 400;
-  content: "\f1ea";
+
+
+.searchbar{
+    width: 100%;
+    
+}
+.searchbar-input-wrap{
+    position: relative;
+    height: 32px;
+}
+.searchbar-input-wrap input{
+    display: block;
+width: 100%;
+}
+.searchbar-input-wrap i{
+    
+    
+    font-size: 1.1em;
+    position: absolute;
+    top: 50%;
+    margin-top: -11px;
+    left: 8px;
 }
 
 input[type=search] {
-text-indent: 20px;
+    text-indent: 1.5em;
     border: 1px solid var(--light-gray);
-border-radius: 8px;
+    border-radius: 8px;
     cursor: pointer;
+    height: 2em;
     
-
-
+    
 }
 
-input[type=search]::before {
-    content: 'search';
-    font-family: 'Material Icons';
-
-}

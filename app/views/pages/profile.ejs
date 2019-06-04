@@ -1,6 +1,17 @@
 <% include ../partials/head.ejs %>
+<header>
+<nav class=top-nav>
+    <div class=left></div>
+    
+    <div class=right><a href="profile/edit">edit</a></div>
+    
+</nav>
+
+<h1>Profile</h1>    
+</header>
+
+
 <section>
-<h1>Profile</h1>
 <% if (typeof user == 'object' && user) { %>
 
 <div class=profile-picture>
@@ -8,7 +19,7 @@
 </div>
     <h2> <%= user.username %></h2>
     <p class='icon console'> <%= user.console %></p>
-<h3>About</h3>
+<h3>About you</h3>
 <p> <%= user.about %> </p>
 <% include ../partials/my-list.ejs %>
 

@@ -1,21 +1,27 @@
 <% include ../partials/head.ejs %>
-<section>
+<header>
   
-
-  <h1>Games</h1>
-</section>
-
-<section>
-<form>
-  <div>
+<nav class=top-nav>
+    <div class=left><a href="/profile">back</a></div>
+  <h1>Games</h1>  
+    <div class=right><a href=""></a></div>
+    
+</nav>
+  
+  <form class=searchbar>
+  <div class=searchbar-input-wrap>
     <input type="search" id="mySearch" name="query"
-     placeholder="Search for Games">
-    <button class=material-icons>search</button>
+     placeholder="Search">
+    <i class="material-icons">search</i>
   </div>
 </form>
-</section>
+</header>
 
-<div>
+
+
+
+
+<section>
     <ul class="games">
         <% for (var index = 0; index < games.length; index++) { %>
         <li class="item">
@@ -27,7 +33,7 @@
         </li>
         <% } %>
     </ul>    
-</div>
+</section>
 
 
 

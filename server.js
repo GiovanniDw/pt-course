@@ -1,11 +1,13 @@
-require('dotenv').config()
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const multer = require('multer');
-const mongo = require('mongodb');
-const mongoose = require('mongoose');
 const session = require('express-session');
+const mongoose = require('mongoose');
+
+const multer = require('multer');
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy
 
