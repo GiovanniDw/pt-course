@@ -1,6 +1,7 @@
 let gamesController = {};
 
 let games = {
+    _id: "1",
         title: "gta",
         cover: "500"
 };

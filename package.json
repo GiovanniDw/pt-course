@@ -1,5 +1,5 @@
 {
-  "name": "GAMER",
+  "name": "gamer",
   "version": "1.0.0",
   "description": "Gamers around the word can find each other based on games",
   "main": "server.js",

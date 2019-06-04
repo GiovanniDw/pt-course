@@ -7,13 +7,15 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 
 const multer = require('multer');
-
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy
 
 const url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
 
-mongoose.connect(url , {useNewUrlParser: false,});
+mongoose.connect(url , {
+    dbName: process.env.DB_NAME,
+    useNewUrlParser: true,});
+
 const db = mongoose.connection;
 // eslint-disable-next-line no-console
 db.on('error', console.error.bind(console, 'connection error:'));
