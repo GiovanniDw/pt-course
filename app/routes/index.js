@@ -5,7 +5,7 @@ let auth = require("../controllers/AuthController.js");
 // restrict index for logged in user only
 router.get('/', auth.home);
 
-router.get('/profile', auth.profile);
+
 
 // route to register page
 router.get('/register', auth.register);

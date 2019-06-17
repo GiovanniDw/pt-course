@@ -1,7 +1,7 @@
 const passport = require("passport");
 const User = require("../models/User");
 
-let userController = {};
+const userController = {};
 
 // Restrict access to root page
 userController.home = function (req, res) {
@@ -10,11 +10,7 @@ userController.home = function (req, res) {
         user: req.user
     });
 };
-userController.profile = function (req, res) {
-    res.render('pages/profile', {
-        user: req.user
-    })
-}
+
 // Go to registration page
 userController.register = function (req, res) {
     res.render('pages/register');
@@ -49,37 +45,9 @@ userController.doLogin = function (req, res) {
 // logout
 userController.logout = function (req, res) {
     req.logout();
-    res.redirect('/');
+    res.redirect('/login');
 };
 
-userController.editProfile = function (req, res) {
-    res.render('pages/edit', {
-        user: req.user
-    });
-}
-
-userController.doEditProfile = function (req, res, next) {
-    User.findOneAndUpdate({
-        _id: req.user._id
-    }, {
-        $set: {
-            // name: req.body.name,
-            username: req.body.username,
-            console: req.body.console,
-            picture: req.file ? req.file.filename : null,
-            about: req.body.about
-        }
-    }, done);
-
-    function done(err) {
-        if (err) {
-            next(err)
-        } else {
-
-            res.redirect('/profile')
-        }
-    }
-}
 
 
 

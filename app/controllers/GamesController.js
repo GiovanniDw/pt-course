@@ -1,13 +1,8 @@
-let gamesController = {};
+const gamesHelper = require("../helpers/games");
 
-let games = {
-    _id: "1",
-        title: "gta",
-        cover: "500"
-};
-
-
-
+const gamesController = {};
+ 
+const games = [];
 
 gamesController.list = function (req, res) {
     res.render('pages/games', {
@@ -19,12 +14,20 @@ gamesController.search = function (req, res) {
         games: games
     })
 }
-gamesController.doSearch = function (req, res) {
-    var query = req.params.query;
-    res.render('pages/games', {
-        games: games
-    })
+gamesController.doSearch = async function (req, res, next) {
+
+    try{
+        const query = req.query.q;
+        const response = await gamesHelper.search(query);
+        
+    res.render('pages/search', {games: response});
+    
+
+} catch(err) {
+    res.redirect('/games')
+   next(err);
 }
+} 
 module.exports = gamesController;
 
 

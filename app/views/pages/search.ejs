@@ -3,7 +3,7 @@
   
 <nav class=top-nav>
     <div class=left><a href="/profile">back</a></div>
-  <h1>Games</h1>  
+  <h1>Search</h1>  
     <div class=right><a href=""></a></div>
     
 </nav>
@@ -24,11 +24,11 @@
     <ul class="games">
         <% for (var i = 0; i < games.length; i++) { %>
         <li class="item">
-        <h3><%= games[i].title %></h3>
-            <img src="/uploads/<%= games[i].cover %>" alt="<%= games[i].title %>">
-            <button id=js-remove
-                    data-id="<%= games[i]._id %>"
-                    class="icon add material-icons">add</button>
+        
+            <img src="<%= games[i].cover %>" alt="<%= games[i].title %>">
+            <a id=js-remove
+                    data-id="<%= games[i].id %>"
+                    class="icon add material-icons">add</a>
         </li>
         <% } %>
     </ul>    
