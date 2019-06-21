@@ -29,7 +29,7 @@ const profile = require('./app/routes/profile')
 
 
 
-const port = 3000;
+const port = process.env.PORT;
 const app = express()
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, 'app/views'));

@@ -39,6 +39,9 @@
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0"
   },
+  "engines": {
+    "node": "10.15.2"
+  },
   "nodemonConfig": {
     "start": "npm run test",
     "restart": "npm run test"
