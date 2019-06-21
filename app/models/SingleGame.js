@@ -5,4 +5,6 @@ const SingleGameSchema = new mongoose.Schema({
     title: String,
     cover: String
 });
-module.exports = mongoose.model('SingleGame', SingleGameSchema);
+module.exports = mongoose.model('SingleGame', SingleGameSchema, 'game');
+
+ 

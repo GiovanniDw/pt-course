@@ -16,19 +16,17 @@
 </form>
 </header>
 
-
-
-
-
 <section>
     <ul class="games">
         <% for (var i = 0; i < games.length; i++) { %>
         <li class="item">
-        
+        <h3><%= games[i].title %></h3>
             <img src="<%= games[i].cover %>" alt="<%= games[i].title %>">
-            <a id=js-remove
-                    data-id="<%= games[i].id %>"
-                    class="icon add material-icons">add</a>
+            <form action="/games/add/<%= games[i].id %>" method="post">
+              <button id=js-remove
+                      data-id="<%= games[i].id %>"
+                      class="icon add material-icons">add</button>
+            </form>
         </li>
         <% } %>
     </ul>    

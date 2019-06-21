@@ -1,11 +1,19 @@
 const User = require("../models/User");
-
+const usersHelper = require('../helpers/users');
 let profileController = {};
 
-profileController.profile = function (req, res) {
-    res.render('pages/profile', {
-        user: req.user
-    })
+profileController.profile = async function (req, res, next) {
+    let myGames = [];
+    try{ 
+        const userID = req.user.id;
+        myGames = await usersHelper.myGames(userID);
+        res.render('pages/profile', {
+            user: req.user, games: myGames
+        })
+    } catch (err) {
+        next(err);
+    }
+    
 }
 profileController.editProfile = function (req, res) {
     res.render('pages/edit', {

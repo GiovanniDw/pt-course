@@ -1,11 +1,11 @@
 {
   "name": "gamer",
   "version": "1.0.0",
-  "description": "Gamers around the word can find each other based on games",
+  "description": "Gamers around the world can find each other based on games",
   "main": "server.js",
   "scripts": {
     "eslint": "node_modules/.bin/eslint server.js app/controllers/*.js app/static/js/*.js",
-    "stylelint": "node_modules/.bin/stylelint public/css/*.css",
+    "stylelint": "node_modules/.bin/stylelint app/static/css/*.css",
     "test": "test",
     "start": "node server.js",
     "nmStart": "nodemon server.js"

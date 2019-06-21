@@ -1,49 +1,71 @@
 const passport = require("passport");
+
+
 const User = require("../models/User");
 
-const userController = {};
+const authController = {};
+
+authController.isLoggedIn = function (req, res, next) {
+    if(req.isAuthenticated()) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
 // Restrict access to root page
-userController.home = function (req, res) {
-    
-    res.render('pages/index', {
-        user: req.user
-    });
+authController.home = function (req, res) {
+    if(req.user) {
+        res.render('pages/index', {
+            user: req.user
+        });
+    } else {
+        res.redirect('/login');
+    }
 };
 
 // Go to registration page
-userController.register = function (req, res) {
+authController.register = function (req, res) {
+    if(req.user) {
+        res.redirect('/');
+    } else {
     res.render('pages/register');
+    }
 };
 // Post registration
-userController.doRegister = function (req, res) {
+authController.doRegister = function (req, res, next) {
     User.register(new User({
         name: req.body.name,
         username: req.body.username,
+        games:[]
     }), req.body.password, function (err, user) {
         if (err) {
+            next(err);
             return res.render('pages/register', {
                 user: user
             });
         }
         passport.authenticate('local')(req, res, function () {
             res.redirect('/profile/edit');
-        });
-    });
+        })
+    })  
 };
 
 // Go to login page
-userController.login = function (req, res) {
+authController.login = function (req, res) {
+   
     res.render('pages/login');
+    
 };
 // Post login
-userController.doLogin = function (req, res) {
-    passport.authenticate('local')(req, res, function () {
-        res.redirect('/');
-    });
-};
+authController.doLogin = passport.authenticate('local', {
+        successRedirect: '/profile',
+        failureRedirect: '/login'
+    })
+
+
 // logout
-userController.logout = function (req, res) {
+authController.logout = function (req, res) {
     req.logout();
     res.redirect('/login');
 };
@@ -54,5 +76,4 @@ userController.logout = function (req, res) {
 
 
 
-module.exports = userController;
-
+module.exports = authController;

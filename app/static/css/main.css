@@ -4,7 +4,7 @@
 @import url('https://use.fontawesome.com/releases/v5.8.2/css/all.css');
 
 :root {
-color-scheme: light dark;
+    color-scheme: light dark;
     --special-text-color: hsla(60, 100%, 50%, 0.5);
     --border-color: black;
 
@@ -15,30 +15,31 @@ color-scheme: light dark;
     --background-tertiary: #FFFFFF;
 
     --text-primary: #000000;
-    --text-secondary: rgba(60,60,67,60);
-    --text-tertiary:rgba(60, 60, 67, 30);
-    --text-quarternary:rgba(60, 60, 67, 18);
+    --text-secondary: rgba(60, 60, 67, 60);
+    --text-tertiary: rgba(60, 60, 67, 30);
+    --text-quarternary: rgba(60, 60, 67, 18);
 
     --color-green: #34C759;
     --color-red: #FF3B30;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --special-text-color: hsla(60, 50%, 70%, 0.75);
-    --border-color: white;
-    --main-color: rgba(10, 132, 255, 1);
-    --background-primary: #000000;
-    --background-secondary: #1C1C1E;
-    --background-tertiary: #2C2C2E;
-    --text-primary: #FFFFFF;
-    --text-secondary: rgba(235, 235, 245, 60);
-    --text-tertiary:rgba(235, 235, 245, 30);
-    --text-quarternary:rgba(235, 235, 245, 18);
-    --color-green: #32D74B;
-    --color-red: #FF453A;
-  }
+    :root {
+        --special-text-color: hsla(60, 50%, 70%, 0.75);
+        --border-color: white;
+        --main-color: rgba(10, 132, 255, 1);
+        --background-primary: #000000;
+        --background-secondary: #1C1C1E;
+        --background-tertiary: #2C2C2E;
+        --text-primary: #FFFFFF;
+        --text-secondary: rgba(235, 235, 245, 60);
+        --text-tertiary: rgba(235, 235, 245, 30);
+        --text-quarternary: rgba(235, 235, 245, 18);
+        --color-green: #32D74B;
+        --color-red: #FF453A;
+    }
 }
+
 * {
     box-sizing: border-box;
 }
@@ -133,7 +134,7 @@ ul.main-nav li a img {
 }
 
 ul.main-nav li a {
-    opacity: 0.2;
+    opacity: 1;
     transition-delay: 1s;
     transition-duration: 1s;
 
@@ -144,7 +145,7 @@ ul.main-nav li a.active {
     opacity: 1;
     transition-delay: 1s;
     transition-duration: 1s;
-    transform: scale(1);
+
 }
 
 h1 {
@@ -311,6 +312,7 @@ img {
     width: 100%;
 }
 
+ul.games li.item button.add,
 ul.games li.item a.add {
     text-decoration: none;
     -webkit-appearance: none;
@@ -320,7 +322,7 @@ ul.games li.item a.add {
     -moz-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
     box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
     background: var(--color-green);
-
+    cursor: pointer;
     color: var(--background-primary);
     height: 25px;
     width: 25px;
@@ -345,6 +347,7 @@ ul.games li.item button.remove {
     height: 25px;
     width: 25px;
     text-align: center;
+    cursor: pointer;
     padding-left: 0;
     padding-top: 0;
     padding-right: 0;
@@ -358,7 +361,7 @@ ul.games li.item button.remove:hover {
 
 }
 
-ul.games li.item a.add:hover {
+ul.games li.item button.add:hover {
     transform: (1.4);
 
     transform: rotate(180deg);

@@ -30,7 +30,7 @@ const profile = require('./app/routes/profile')
 
 
 const port = 3000;
-const app = express();
+const app = express()
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, 'app/views'));
     app.use(bodyParser.json());
@@ -57,10 +57,7 @@ passport.deserializeUser(User.deserializeUser());
 
     app.get('/chat', chat);
 
-    app.use(function (req, res, next) {
-        res.locals.user = null
-        next()
-    })
+   
     app.get('*', error)
     app.listen(port)
 
@@ -83,5 +80,6 @@ function error(req, res) {
         throw err
     })
 }
+
 
 
