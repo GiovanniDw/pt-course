@@ -1,12 +1,13 @@
 const User = require("../models/User");
-const usersHelper = require('../helpers/users');
+const profileHelper = require('../helpers/profile');
+
 let profileController = {};
 
 profileController.profile = async function (req, res, next) {
     let myGames = [];
     try{ 
         const userID = req.user.id;
-        myGames = await usersHelper.myGames(userID);
+        myGames = await profileHelper.myGames(userID);
         res.render('pages/profile', {
             user: req.user, games: myGames
         })
@@ -43,7 +44,4 @@ profileController.doEditProfile = function (req, res, next) {
         }
     }
 }
-
-
-
 module.exports = profileController;

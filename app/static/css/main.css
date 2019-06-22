@@ -15,9 +15,9 @@
     --background-tertiary: #FFFFFF;
 
     --text-primary: #000000;
-    --text-secondary: rgba(60, 60, 67, 60);
-    --text-tertiary: rgba(60, 60, 67, 30);
-    --text-quarternary: rgba(60, 60, 67, 18);
+    --text-secondary: rgba(60, 60, 67, .60);
+    --text-tertiary: rgba(60, 60, 67, .30);
+    --text-quarternary: rgba(60, 60, 67, .18);
 
     --color-green: #34C759;
     --color-red: #FF3B30;
@@ -32,9 +32,9 @@
         --background-secondary: #1C1C1E;
         --background-tertiary: #2C2C2E;
         --text-primary: #FFFFFF;
-        --text-secondary: rgba(235, 235, 245, 60);
-        --text-tertiary: rgba(235, 235, 245, 30);
-        --text-quarternary: rgba(235, 235, 245, 18);
+        --text-secondary: rgba(235, 235, 245, .60);
+        --text-tertiary: rgba(235, 235, 245, .30);
+        --text-quarternary: rgba(235, 235, 245, .18);
         --color-green: #32D74B;
         --color-red: #FF453A;
     }
@@ -76,8 +76,12 @@ footer {
 section {
     padding: 1em;
     color: var(--text-primary);
+    
 }
+section.full-width {
+    padding: 0;
 
+}
 header.header {
 
     text-align: center;
@@ -455,3 +459,43 @@ input[type=search] {
 
 
 }
+
+.onboarding {
+
+}
+form.onboarding{
+    background: var(--background-primary);
+}
+.onboarding fieldset,
+.onboarding legend {
+    margin: 0;
+    padding: 0;
+}
+
+.onboarding fieldset {
+    -webkit-appearance: none;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    border: 0;
+    margin-top: 5em;
+    margin-bottom:1em;
+    background: var(--background-secondary);
+    
+    position: relative;
+}
+.onboarding fieldset input,
+.onboarding fieldset textarea {
+    background: var(--background-primary);
+    padding: -1em;
+    border-radius: 5px;
+}
+
+.onboarding fieldset legend {
+float: left;
+margin-bottom: .5em;
+
+position: absolute;
+top:-5em;
+}
+

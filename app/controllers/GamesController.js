@@ -1,7 +1,7 @@
 const gamesHelper = require("../helpers/games");
-const usersHelper = require('../helpers/users');
+const profileHelper = require('../helpers/profile');
+
 const gamesController = {};
-const User = require("../models/User");
 
 const games = [];
 
@@ -10,13 +10,13 @@ gamesController.list = async function (req, res) {
             popular: games
         })
     }
-    
 
 gamesController.search = function (req, res) {
     res.render('pages/games', {
         games: games
     })
 }
+
 gamesController.doSearch = async function (req, res, next) {
     try{
         const query = req.query.q;// query is the input to search of the user
@@ -32,72 +32,26 @@ gamesController.doSearch = async function (req, res, next) {
 } 
 
 gamesController.addGame = async function(req, res, next) {
-    
     const id = req.params.id;
     const user = req.user.id;
-    
     try {
-        const check = await gamesHelper.findGameId(id);
+        let checkDup = await gamesHelper.findGameId(id);
         const game = await gamesHelper.findOne(id);  
+        
 
-        if (!check) {
+        if (checkDup == false || checkDup == null) {
             await gamesHelper.save(game);
+            await profileHelper.addGame(user, id);
+        } else {
+            await profileHelper.addGame(user, id);
         }
-        await usersHelper.addGame(user, id);
+
         res.redirect('/profile');
     } catch (err){
         next(err)
     }
 }
 
-
-
 module.exports = gamesController;
 
 
-// gamesController.addGame = function (req, res, next) {
-//     User.findOneAndUpdate({
-//         _id: req.user._id
-//     }, {
-//         $push: {
-//             games: {
-//                 id: req.params.id
-//                 title: req.body.title,
-//                 cover: req.file ? req.file.filename : null
-//             }
-//         }
-//     }, done)
-
-//     function done(err) {
-//         if (err) {
-//             next(err)
-//         } else {
-
-//             res.redirect('/profile')
-//         }
-//     }
-// }
-
-// function removeGame(req, res, next) {
-//     var id = req.params.id
-
-//     if (!req.session.user) {
-//         res.status(401).send('Credentials required')
-//         return
-//     }
-
-//     db.collection('game').deleteOne({
-//         _id: mongo.ObjectID(id)
-//     }, done)
-
-//     function done(err) {
-//         if (err) {
-//             next(err)
-//         } else {
-//             res.json({
-//                 status: 'ok'
-//             })
-//             res.redirect('/profile')
-//         }
-//     }
-// }

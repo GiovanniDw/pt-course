@@ -6,6 +6,8 @@ const UserSchema = new mongoose.Schema({
     name: String,
     username: String,
     console: String,
+    gamemode: String,
+    playstyle: String,
     picture: String,
     about: String,
     password: String,

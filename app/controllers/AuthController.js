@@ -3,7 +3,7 @@ const passport = require("passport");
 
 const User = require("../models/User");
 
-const authController = {};
+let authController = {};
 
 authController.isLoggedIn = function (req, res, next) {
     if(req.isAuthenticated()) {
@@ -32,10 +32,10 @@ authController.register = function (req, res) {
     res.render('pages/register');
     }
 };
+
 // Post registration
 authController.doRegister = function (req, res, next) {
     User.register(new User({
-        name: req.body.name,
         username: req.body.username,
         games:[]
     }), req.body.password, function (err, user) {
@@ -46,11 +46,38 @@ authController.doRegister = function (req, res, next) {
             });
         }
         passport.authenticate('local')(req, res, function () {
-            res.redirect('/profile/edit');
+            res.redirect('/onboarding');
         })
     })  
 };
+authController.onboarding = function (req, res) {
+    res.render('pages/onboarding', {
+            user: req.user
+    });
+}
 
+authController.doOnboarding = function (req, res, next) {
+    User.findOneAndUpdate({
+        _id: req.user._id
+    }, {
+        $set: {
+            name: req.body.name,
+            console: req.body.console,
+            gamemode: req.body.gamemode,
+            playstyle: req.body.playstyle,
+            about: req.body.about
+        }
+    }, done);
+
+    function done(err) {
+        if (err) {
+            next(err)
+        } else {
+
+            res.redirect('/profile')
+        }
+    }
+}
 // Go to login page
 authController.login = function (req, res) {
    

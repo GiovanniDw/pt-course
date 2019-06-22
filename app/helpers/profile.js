@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const User = require('../models/User');
 
-const usersHelper = {};
+const profileHelper = {};
 
-usersHelper.addGame = function (userID, gameID) {
+profileHelper.addGame = function (userID, gameID) {
     return new Promise(function (resolve, reject) {
 
         mongoose.connect(process.env.MONGO_DB, {
@@ -17,17 +17,23 @@ usersHelper.addGame = function (userID, gameID) {
         db.once('open', async function () {
             try {
                 const user = await User.findById(userID);
+                const checkDup = user.games.includes(gameID);
+console.log(checkDup);
+                if (!checkDup) {
+                    user.games.push(gameID);
+                    await user.save();
+                }
 
-                user.games.push(gameID);
-                await user.save();
-                resolve();
+                
+                
+                resolve('has resolved');
             } catch (err) {
                 reject(err);
             }
         });
     });
 };
-usersHelper.myGames = (userID) => {
+profileHelper.myGames = (userID) => {
 return new Promise(async function (resolve, reject){
     try {
         const user = await User.findById(userID).select('games').populate('games');
@@ -39,26 +45,4 @@ return new Promise(async function (resolve, reject){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = usersHelper;
+module.exports = profileHelper;

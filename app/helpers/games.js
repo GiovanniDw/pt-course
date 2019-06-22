@@ -60,15 +60,15 @@ gamesHelper.findGameId = (id) => {
         db.on('error', (err) => reject(err));
         db.once('open', async function (){
                         try {
-                            let game = await SingleGame.findGameId(id);
+                            let game = await SingleGame.findById(id);
                             resolve(game);   
                         } catch (err) {
-                            resolve(false);
+                            reject(err);
                         }
     })
 })
 }
-gamesHelper.save = function (game) {
+gamesHelper.save = (game) => {
     return new Promise((resolve, reject) => {
         const {
             id,
