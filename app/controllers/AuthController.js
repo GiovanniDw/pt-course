@@ -1,6 +1,4 @@
 const passport = require("passport");
-
-
 const User = require("../models/User");
 
 let authController = {};
@@ -11,8 +9,7 @@ authController.isLoggedIn = function (req, res, next) {
     } else {
         res.redirect('/login');
     }
-}
-
+};
 // Restrict access to root page
 authController.home = function (req, res) {
     if(req.user) {
@@ -53,8 +50,8 @@ authController.doRegister = function (req, res, next) {
 authController.onboarding = function (req, res) {
     res.render('pages/onboarding', {
             user: req.user
-    });
-}
+    })
+};
 
 authController.doOnboarding = function (req, res, next) {
     User.findOneAndUpdate({
@@ -80,27 +77,18 @@ authController.doOnboarding = function (req, res, next) {
 }
 // Go to login page
 authController.login = function (req, res) {
-   
     res.render('pages/login');
-    
 };
 // Post login
 authController.doLogin = passport.authenticate('local', {
         successRedirect: '/profile',
         failureRedirect: '/login'
-    })
-
+    });
 
 // logout
 authController.logout = function (req, res) {
     req.logout();
     res.redirect('/login');
 };
-
-
-
-
-
-
 
 module.exports = authController;

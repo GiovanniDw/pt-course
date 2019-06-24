@@ -7,7 +7,7 @@ profileController.profile = async function (req, res, next) {
     let myGames = [];
     try{ 
         const userID = req.user.id;
-        myGames = await profileHelper.myGames(userID);
+        myGames = await profileHelper.myGames(userID);// populates usergames into myGames of logged in user
         res.render('pages/profile', {
             user: req.user, games: myGames
         })
@@ -30,6 +30,8 @@ profileController.doEditProfile = function (req, res, next) {
             // name: req.body.name,
             username: req.body.username,
             console: req.body.console,
+            gamemode: req.body.gamemode,
+            playstyle: req.body.playstyle,
             picture: req.file ? req.file.filename : null,
             about: req.body.about
         }

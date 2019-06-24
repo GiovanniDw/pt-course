@@ -1,18 +1,17 @@
 <h3>Games</h3>
 <div>
     <ul class="games">
+    <li class="item">
+            <img src="images/add-game.png" alt="">
+            <a href='/games' id="" class="icon add material-icons">search</a>
+        </li>
         <% for (var index = 0; index < games.length; index++) { %>
         <li class="item">
         
             <img src="<%= games[index].cover %>" alt="<%= games[index].title %>">
-            <button id=js-remove
-                    data-id="<%= games[index]._id %>"
-                    class="icon remove material-icons">close</button>
+          
         </li>
         <% } %>
-        <li class="item">
-            <img src="images/add-game.png" alt="">
-            <a href='/games' id="" class="icon add material-icons">search</a>
-        </li>
+        
     </ul>    
 </div>

@@ -39,23 +39,25 @@
         --color-red: #FF453A;
     }
 }
- @supports(padding: max(0px)) {
-    #bottomBar {
-         padding-left: max(8px, env(safe-area-inset-left));
-         padding-right: max(8px, env(safe-area-inset-right));
-         padding-bottom: max(8px, env(safe-area-inset-bottom));
-     }
 
-     .post {
-         padding-left: max(12px, env(safe-area-inset-left));
-         padding-right: max(12px, env(safe-area-inset-right));
-     }
- }
+@supports(padding: max(0px)) {
+    #bottomBar {
+        padding-left: max(8px, env(safe-area-inset-left));
+        padding-right: max(8px, env(safe-area-inset-right));
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+    }
+
+    .post {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+    }
+}
+
 * {
     box-sizing: border-box;
 }
 
-  
+
 body {
     font-family: 'Open Sans', sans-serif;
     padding-bottom: 83px;
@@ -64,7 +66,7 @@ body {
     -webkit-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
     box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
-    
+
     margin: 0 auto;
 }
 
@@ -73,16 +75,16 @@ header {
     padding-right: max(8px, env(safe-area-inset-right));
     padding-top: max(8px, env(safe-area-inset-top));
     border-bottom: 1px solid var(--background-secondary);
-    
+
 }
 
 footer {
     bottom: 0;
     position: fixed;
     width: 100%;
-padding-left: max(8px, env(safe-area-inset-left));
-padding-right: max(8px, env(safe-area-inset-right));
-padding-bottom: max(8px, env(safe-area-inset-bottom));
+    padding-left: max(8px, env(safe-area-inset-left));
+    padding-right: max(8px, env(safe-area-inset-right));
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
 
     background: var(--background-secondary);
 
@@ -96,12 +98,14 @@ section {
     padding-left: max(8px, env(safe-area-inset-left));
     padding-right: max(8px, env(safe-area-inset-right));
     color: var(--text-primary);
-    
+
 }
+
 section.full-width {
     padding: 0;
 
 }
+
 header.header {
 
     text-align: center;
@@ -166,11 +170,7 @@ ul.main-nav li a {
 
 }
 
-ul.main-nav li a.active {
-    opacity: 1;
-    transition-delay: 1s;
-    transition-duration: 1s;
-}
+
 
 h1 {
     font-size: 2em;
@@ -204,32 +204,16 @@ h3 {
     border: 0;
     width: 100%;
     cursor: pointer;
-    
+
 }
 
 .btn-bottom {
-
-
-margin-top: 1em;
-
+    margin-top: 1em;
 }
-
-/* .login{
-border: 1px solid #ededed;
-border-radius: 5px;
-margin: 2em auto;
-width: 20em;
-
-display: flex;
-flex-direction: column;
-background: white;
-justify-content: space-between;
-} */
-
 
 fieldset {
     -webkit-appearance: none;
-    
+
 }
 
 button {
@@ -265,18 +249,21 @@ textarea {
     justify-content: left;
     margin: .5em 0 .5em 0;
 
-    
+
 }
+
 .profile-picture {
     height: 4em;
     width: 4em;
-overflow: hidden;
-border-radius: 100%;
+    overflow: hidden;
+    border-radius: 100%;
 }
+
 .profile-picture img {
     overflow: hidden;
-    
+
 }
+
 .login,
 .register,
 .edit {
@@ -292,8 +279,8 @@ border-radius: 100%;
     align-content: space-between;
     margin-bottom: 5em;
     font-size: 1.5em;
-    padding-top:1em;
-    
+    padding-top: 1em;
+
 }
 
 .login-register a {
@@ -441,11 +428,7 @@ ul.games li.item button.add:hover {
     border: 0;
     text-decoration: none;
     text-align: center;
-
 }
-
-
-
 
 .icon::before {
     display: inline-block;
@@ -455,18 +438,17 @@ ul.games li.item button.add:hover {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Step 2: Reference Individual Icons */
 .console::before {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     content: "\f11b";
 }
 
-/* Note: Make sure to include the correct weight and unicode value for the icon */
 
 
 .searchbar {
     width: 100%;
+    padding-bottom:1em;  
 
 }
 
@@ -494,50 +476,57 @@ input[type=search] {
     text-indent: 1.5em;
     border: 1px solid var(--background-secondary);
     color: var(--text-primary);
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
     height: 2em;
 
 
 }
 
-.onboarding {
-
-}
+.onboarding {}
 
 form.onboarding {
     background: var(--background-primary);
 }
 
 .onboarding fieldset,
-.onboarding legend {
+.onboarding legend,
+.edit fieldset,
+.edit legend {
     margin: 0;
     padding: 0;
 }
 
-.onboarding fieldset {
-    
-    
+.onboarding fieldset,
+.edit fieldset{
     -webkit-appearance: none;
     padding: 1em;
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
     border: 0;
     margin-top: 5em;
-    margin-bottom:1em;
+    margin-bottom: 1em;
     background: var(--background-secondary);
-    
     position: relative;
 }
-.onboarding fieldset div{
-display: flex;
-align-items: center;
+.edit fieldset{
+    margin-top:1em;
 }
-.onboarding fieldset div label{
-margin-left: .5em;
+.onboarding fieldset div,
+.edit fieldset div {
+    display: flex;
+    align-items: center;
 }
+
+.onboarding fieldset div label,
+.edit fieldset div label {
+    margin-left: .5em;
+}
+
 .onboarding fieldset input,
-.onboarding fieldset textarea {
+.onboarding fieldset textarea,
+.edit fieldset input,
+.edit fieldset textarea {
     background: var(--background-primary);
     padding: -1em;
     border-radius: 5px;
@@ -545,45 +534,52 @@ margin-left: .5em;
 }
 
 .onboarding fieldset legend {
-float: left;
-margin-bottom: .5em;
+    float: left;
+    margin-bottom: .5em;
 
-position: absolute;
-top:-5em;
+    position: absolute;
+    top: -5em;
 }
 
-.js-enabled .onboarding fieldset:not(.active){
+.js-enabled .onboarding fieldset:not(.active) {
     display: none;
 }
+
 .js-enabled .onboarding form {
- display: flex;
- align-items: center;
- justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .js-enabled .onboarding fieldset.active {
     display: flex;
-    height: auto;   
+    height: auto;
 }
+
 .no-js .buttons .next,
 .no-js .buttons .back {
     display: none;
 }
-.js-enabled form.onboarding .buttons .next{
-    
+
+.js-enabled form.onboarding .buttons .next {
+
     text-align: center;
     display: block;
 }
+
 .js-enabled .buttons a.back.hidden {
     display: none;
 }
-.js-enabled form.onboarding fieldset.active:first-of-type ~ .buttons .back,
-.js-enabled form.onboarding fieldset.active:first-of-type ~ .buttons .submit {
+
+.js-enabled form.onboarding fieldset.active:first-of-type~.buttons .back,
+.js-enabled form.onboarding fieldset.active:first-of-type~.buttons .submit {
     display: none;
 }
 
-.js-enabled form.onboarding fieldset.active:not(:last-of-type) ~ .buttons .submit {
+.js-enabled form.onboarding fieldset.active:not(:last-of-type)~.buttons .submit {
     display: none;
 }
+
 .js-enabled form.onboarding fieldset.active:last-of-type ~ .buttons .next {
     display: none;
 }

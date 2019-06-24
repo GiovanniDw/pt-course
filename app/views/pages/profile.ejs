@@ -1,39 +1,36 @@
 <% include ../partials/head.ejs %>
 <header>
-<nav class=top-nav>
-    <div class=left></div>
-    
-    <div class=right><a href="profile/edit">edit</a></div>
-    
-</nav>
-
-<h1>Profile</h1>    
+    <nav class=top-nav>
+        <div class=left></div>
+        <div class=right><a href="profile/edit">edit</a></div>
+    </nav>
+    <h1>Profile</h1>    
 </header>
-
-
 <section>
-<% if (typeof user == 'object' && user) { %>
+    <% if (typeof user == 'object' && user) { %>
+    <div class=profile-card>
+        <div class=profile-picture>
+            <img src="/uploads/<%= user.picture %> ">
+        </div>
+        <div>
+            <h2> <%= user.name %></h2>
+            <p class='icon console'> <%= user.console %></p>
+        </div>
+    </div>
+    <h3>Looking for</h3>
+        <p> <%= user.gamemode %> </p>
+    <h3>Playstyle</h3>
+        <p> <%= user.playstyle %> </p>
+    <h3>About</h3>
+        <p> <%= user.about %> </p>
 
-<div class=profile-card>
-<div class=profile-picture>
-<img src="/uploads/<%= user.picture %> ">
-</div>
-<div>
-<p> <%= user.name %></p>
-</div>
-</div>
-    <h2> <%= user.name %></h2>
-    <p class='icon console'> <%= user.console %></p>
-<h3>About you</h3>
-<p> <%= user.about %> </p>
 <% include ../partials/my-list.ejs %>
-
 <% } else { %>
       <h2>Hi Nobody!</h2>
-
 <% } %>
 </section>
-
-<% include ../partials/user-log-reg.ejs %>
+<div class='log-sign'>
+<a class='btn-logout' href="/logout">Logout</a>
+</div>
 <% include ../partials/tail.ejs %>
 

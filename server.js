@@ -9,25 +9,18 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT;
-
-mongoose.connect(url , {
+mongoose.connect(process.env.MONGO_DB, {
     dbName: process.env.DB_NAME,
     useNewUrlParser: true
 });
 
 const db = mongoose.connection;
-// eslint-disable-next-line no-console
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function(){
-// eslint-disable-next-line no-console
-});
+db.on('error', error);
+db.once('open', function(){});
+
 const index = require('./app/routes/index')
-const users = require('./app/routes/users')
 const games = require('./app/routes/games')
 const profile = require('./app/routes/profile')
-
-
 
 const port = process.env.PORT;
 const app = express()
@@ -45,7 +38,6 @@ const app = express()
     app.use(passport.session());
 
 app.use('/', index);
-app.use('/users', users);
 app.use('/games', games);
 app.use('/profile', profile);
 
@@ -56,17 +48,15 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
     app.get('/chat', chat);
-
-   
+    
     app.get('*', error)
     app.listen(port)
 
 function chat(req, res) {
-    res.render('pages/chat')
+    res.render('pages/chat', {
+        user: req.user
+    })
 }
-
-
-
 
 function error(req, res) {
     res.render('static' + req.url, function (err, html) {

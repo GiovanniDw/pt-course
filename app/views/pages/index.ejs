@@ -1,23 +1,18 @@
 <% include ../partials/head.ejs %>
 
 <header>
-<nav class=top-nav>
-    <div class=left><a href=""></a></div>
-    
-    <div class=right><a href=""></a></div>
-    
-</nav>
+  <nav class=top-nav>
+      <div class=left><a href=""></a></div>
+      <div class=right><a href=""></a></div>
+  </nav>
   <h1>Gamer</h1>
 </header>
-
 <section>
-  
-
-  
 <% if (typeof user == 'object' && user) { %>
-  <h2>Hi,  <%= user.name %> !</h2>
+  <h2>Welcome <%= user.name %> !</h2>
+  <p>In the future here will be some users you can like or dislike</p>
 <% } else { %>
-  <% include ../partials/user-log-reg.ejs %>
+    <h2>Welcome!</h2>
 <% } %>
 </section>
 <% include ../partials/tail.ejs %>
