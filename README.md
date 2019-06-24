@@ -5,12 +5,19 @@ Find players who play the same games as you. Play togeher, Make new friends.
 Dark Mode        |  Light Mode
 :-------------------------:|:-------------------------:
 ![login dark](https://github.com/GiovanniDw/pt-course/wiki/assets/login_dark.jpg)  | ![login dark](https://github.com/GiovanniDw/pt-course/wiki/assets/login_light.jpg) 
+![login dark](https://github.com/GiovanniDw/pt-course/wiki/assets/profile_dark.jpg)  | ![login dark](https://github.com/GiovanniDw/pt-course/wiki/assets/profile_light.jpg) 
 
-This is a school project.
+## About this project
+This repo contains my work and assignments of
+- [Block Tech](https://github.com/cmda-bt)
+   - [Project Tech](https://github.com/cmda-bt/pt-course-18-19)
+   - [Backend](https://github.com/cmda-bt/be-course-18-19)
+   - [Frondend](https://github.com/cmda-bt/fe-course-18-19)
+   
+
 A small feature of a dating app will be made
 
 [This](https://github.com/GiovanniDw/pt-course/wiki) is my research
-
 
 
 ## Get started
