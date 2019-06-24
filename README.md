@@ -1,11 +1,17 @@
-# DateR
+# GAMER
+
+Find players who play the same games as you. Play togeher, Make new friends.
+
+Dark Mode        |  Light Mode
+:-------------------------:|:-------------------------:
+![login dark](https://github.com/GiovanniDw/pt-course/wiki/assets/login_dark.jpg)  | ![login dark](https://github.com/GiovanniDw/pt-course/wiki/assets/login_light.jpg) 
 
 This is a school project.
 A small feature of a dating app will be made
 
 [This](https://github.com/GiovanniDw/pt-course/wiki) is my research
 
-![login dark](https://github.com/GiovanniDw/pt-course/wiki/assets/login_dark.jpg)
+
 
 ## Get started
 
@@ -30,4 +36,21 @@ npm install
    and hit enter.  
   
 ## Included Packages
-See [package.json](https://github.com/GiovanniDw/pt-course/blob/master/package.json)
+- express
+- express-sessions
+- mongoose
+- body-parser
+- ejs
+- multer
+- dotenv
+- passport
+- passport-local
+- passport-local-mongoose
+
+### Dev
+- eslint
+- jshint
+- nodemon
+- stylelint
+
+
