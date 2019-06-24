@@ -12,7 +12,7 @@ for (var i = 0; i < document.links.length; i++) {
     }
 }
 
-var remove = document.getElementById('js-remove')
+var remove = document.getElementById('js-remove');
 
 if (remove) {
     remove.addEventListener('click', onremove)
@@ -47,17 +47,62 @@ function onremove(ev) {
 
 }
 
+// const search = document.querySelector('[type=search]');
+// const code = document.querySelector('pre');
 
-var search = document.querySelector('[type=search]');
-var code = document.querySelector('pre');
+// search.addEventListener('keyup', function () {
+//     var xhr = new XMLHttpRequest;
+//     xhr.open('GET', '/search/' + search.value, true);
+//     xhr.onreadystatechange = function () {
+//         if (4 == xhr.readyState) {
+//             code.textContent = xhr.responseText;
+//         }
+//     };
+//     xhr.send();
+// }, false);
 
-search.addEventListener('keyup', function () {
-    var xhr = new XMLHttpRequest;
-    xhr.open('GET', '/search/' + search.value, true);
-    xhr.onreadystatechange = function () {
-        if (4 == xhr.readyState) {
-            code.textContent = xhr.responseText;
+const nextFieldButton = document.querySelector("a.next");
+const prevFieldButton = document.querySelector("a.back");
+const activeField = document.querySelector('fieldset.active');
+const fields = document.querySelectorAll('fieldset');
+
+nextFieldButton.onclick = function nextFieldset() {
+    let i
+    for (i = 0; i < fields.length; i++) {
+        console.log(fields[i]);
+        
+        if (fields[i].classList.contains('active')) {
+            fields[i].nextElementSibling.classList.add('active');
+            fields[i].classList.remove('active');
+            prevFieldButton.classList.remove('hidden');
+            break;
         }
-    };
-    xhr.send();
-}, false);
+    }
+}
+prevFieldButton.onclick = function prevFieldset() {
+    let i
+    for (i = 0; i < fields.length; i++) {
+        console.log(fields[i]);
+
+        if (fields[i].classList.contains('active')) {
+            fields[i].previousElementSibling.classList.add('active');
+            fields[i].classList.remove('active');
+            break;
+        }
+    }
+}
+
+// const activeField = document.querySelectorAll('fieldset.active');
+// activeField.removeClass('active').nextField('fieldset').addClass('active');
+
+
+
+
+
+// parentNode
+// childNodes[nodenumber]
+// firstChild
+// lastChild
+// nextSibling
+// previousSibling
+

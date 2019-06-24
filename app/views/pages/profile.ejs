@@ -14,10 +14,15 @@
 <section>
 <% if (typeof user == 'object' && user) { %>
 
+<div class=profile-card>
 <div class=profile-picture>
 <img src="/uploads/<%= user.picture %> ">
 </div>
-    <h2> <%= user.username %></h2>
+<div>
+<p> <%= user.name %></p>
+</div>
+</div>
+    <h2> <%= user.name %></h2>
     <p class='icon console'> <%= user.console %></p>
 <h3>About you</h3>
 <p> <%= user.about %> </p>

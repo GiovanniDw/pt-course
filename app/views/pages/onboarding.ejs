@@ -1,44 +1,44 @@
 <% include ../partials/head.ejs %>
 <header>
 <nav class=top-nav>
-   <div class=left><a href="#"></a></div>
+   <div class="left buttons"><a class='back hidden'>back</a></div>
     <h1>About You</h1>
     <div class=right><a href="#"></a></div>
     
 </nav>
 </header>
-<section class=full-width>    
-<form class=onboarding action=/onboarding method=post>
-<fieldset>
+<section>    
+<form class='onboarding' action=/onboarding method=post>
+<fieldset class='active'>
 <legend><h2>What is your first name?</h2></legend>
-  
   <input name=name placeholder='Your Name'>
 </fieldset>
 <fieldset>
   <legend><h2>What type of console do you play most?</h2></legend>
-    <div><label for=playstation>Playsation</label><input id=playstation type="radio" name="console" value="playstation" checked></div>
-    <div><label for=xbox>Xbox</label><input id=xbox type="radio" name="console" value="xbox"></div>
-    <div><label for=pc>PC</label><input id=pc type="radio" name="console" value="pc"></div>
-    <div><label for=other>Other</label><input id=other type="radio" name="console" value="other"></div>
+    <div><input id=playstation type="radio" name="console" value="playstation" checked><label for=playstation>Playsation</label></div>
+    <div><input id=xbox type="radio" name="console" value="xbox"><label for=xbox>Xbox</label></div>
+    <div><input id=pc type="radio" name="console" value="pc"><label for=pc>PC</label></div>
+    <div><input id=other type="radio" name="console" value="other"><label for=other>Other</label></div>
   </fieldset>
   <fieldset>
     <legend><h2>What type of gamer are you looking for?</h2></legend>
-      <div><label for=coop>coop</label><input id=coop type="radio" name="gamemode" value="coop" checked></div>
-      <div><label for=multiplayer>multiplayer</label><input id=multiplayer type="radio" name="gamemode" value="multiplayer"></div>
+      <div><input id=coop type="radio" name="gamemode" value="coop" checked><label for=coop>Coop</label></div>
+      <div><input id=multiplayer type="radio" name="gamemode" value="multiplayer"><label for=multiplayer>Multiplayer</label></div>
   </fieldset>
   <fieldset>
     <legend><h2>Which Playstyle describes you the best?</h2></legend>
-      <div><label for=agressive>agressive</label><input id=agressive type="radio" name="playstyle" value="agressive" checked></div>
-      <div><label for=stealth>stealth</label><input id=stealth type="radio" name="playstyle" value="stealth"></div>
-      <div><label for=objective>objective</label><input id=objective type="radio" name="playstyle" value="objective"></div>
+      <div><input id=agressive type="radio" name="playstyle" value="agressive" checked><label for=agressive>Agressive</label></div>
+      <div><input id=stealth type="radio" name="playstyle" value="stealth"><label for=stealth>Stealth</label></div>
+      <div><input id=objective type="radio" name="playstyle" value="objective"><label for=objective>Objective</label></div>
   </fieldset>
   <fieldset>
     <legend><h2>What should others know about you?</h2></legend>
       <textarea name=about rows=5 placeholder=""></textarea>
   </fieldset>
-  
-  <button type=submit class=btn-main>done</button>
- 
+  <div class=buttons>
+  <a class='next btn-main'>Next question</a>
+  <button type=submit class='btn-main submit'>done</button>
+ </div>
 </form>
 </section>
 <% include ../partials/tail.ejs %>
