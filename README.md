@@ -8,37 +8,35 @@ Dark Mode        |  Light Mode
 ![login dark](https://github.com/GiovanniDw/pt-course/wiki/assets/profile_dark.jpg)  | ![login dark](https://github.com/GiovanniDw/pt-course/wiki/assets/profile_light.jpg) 
 
 ## About this project
-This repo contains my work and assignments of
+This repo is a project based on the following course at HvA CMD
 - [Block Tech](https://github.com/cmda-bt)
    - [Project Tech](https://github.com/cmda-bt/pt-course-18-19)
    - [Backend](https://github.com/cmda-bt/be-course-18-19)
    - [Frondend](https://github.com/cmda-bt/fe-course-18-19)
    
+### Project Description
+> In Project Tech you'll build a dynamic prototype of a web application. In different roles you take a well-argued position on, among other things, the privacy and security aspects of the application. You'll also learn to navigate the command line, version control with Git & GitHub and make sure code style is consistent.
 
-A small feature of a dating app will be made
 
 [This](https://github.com/GiovanniDw/pt-course/wiki) is my research
 
 
-## Get started
+## Install
+
 
 1. Open up your terminal  
-2. Copy and paste the following in your terminal.  
+2. Copy and paste the following in your terminal and hit enter.  
   ```
-  git clone https://github.com/GiovanniDw/pt-course.git
+  $ git clone https://github.com/GiovanniDw/pt-course.git
   ```
-   hit enter.  
-  
-3. To install the node modules used in this project copy and paste the following code inside the terminal.
+3. To install the node modules used in this project
 ```
-npm install
+$ npm install
 ```
-   hit enter again.
-  
-  
-  4. To get the application up and running.
+   
+1. To get the application up and running.
   ```
-  npm run start
+  $ npm run nmStart
   ```
    and hit enter.  
   
