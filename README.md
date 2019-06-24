@@ -5,6 +5,8 @@ A small feature of a dating app will be made
 
 [This](https://github.com/GiovanniDw/pt-course/wiki) is my research
 
+![login dark](https://github.com/GiovanniDw/pt-course/wiki/assets/login_dark.jpg)
+
 ## Get started
 
 1. Open up your terminal  
